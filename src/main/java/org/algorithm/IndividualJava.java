@@ -1,19 +1,18 @@
-package org.example;
+package org.algorithm;
 
 import java.util.Random;
 
-import static org.example.GeneticDNAFinderSerialKotlinKt.GENES;
 
-public class IndividualJava implements Comparable<IndividualJava> {
+class IndividualJava implements Comparable<IndividualJava> {
     String chromosome;
     int fitness;
 
-    IndividualJava(String chromosome, String target) {
+    public IndividualJava(String chromosome, String target) {
         this.chromosome = chromosome;
         this.fitness = calculateFitness(target);
     }
 
-    int calculateFitness(String target) {
+    private int calculateFitness(String target) {
         int fitness = 0;
         for (int i = 0; i < chromosome.length(); i++) {
             if (chromosome.charAt(i) == target.charAt(i)) fitness++;
@@ -21,8 +20,7 @@ public class IndividualJava implements Comparable<IndividualJava> {
         return fitness;
     }
 
-    IndividualJava mate(IndividualJava partner, String target) {
-        Random rand = new Random();
+    public IndividualJava mate(IndividualJava partner, String target, Random rand) {
         StringBuilder childChromosome = new StringBuilder();
         for (int i = 0; i < chromosome.length(); i++) {
             float prob = rand.nextFloat();
@@ -31,7 +29,8 @@ public class IndividualJava implements Comparable<IndividualJava> {
             } else if (prob < 0.90) {
                 childChromosome.append(partner.chromosome.charAt(i));
             } else {
-                childChromosome.append(GENES.charAt(rand.nextInt(GENES.length())));
+                childChromosome.append(GeneticDNAFinderSerialJava.GENES.
+                        charAt(rand.nextInt(GeneticDNAFinderSerialJava.GENES.length())));
             }
         }
         return new IndividualJava(childChromosome.toString(), target);
@@ -39,6 +38,6 @@ public class IndividualJava implements Comparable<IndividualJava> {
 
     @Override
     public int compareTo(IndividualJava o) {
-        return Integer.compare(o.fitness, this.fitness); // maior fitness primeiro
+        return Integer.compare(o.fitness, this.fitness);
     }
 }
