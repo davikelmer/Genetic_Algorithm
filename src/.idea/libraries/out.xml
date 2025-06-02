@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="out">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/out/Projeto_1_AlgoritmoGeneticoSerialJava-1.0-SNAPSHOT.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/Projeto_1_AlgoritmoGeneticoSerialKotlin-1.0-SNAPSHOT.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
