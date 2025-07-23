@@ -4,7 +4,7 @@ target/
 !**/src/test/**/target/
 
 # Ignorar o arquivo de dados grande
-sequencias.txt
+src/main/sequencias.txt
 
 # Ignorar todos os arquivos .log
 *.log

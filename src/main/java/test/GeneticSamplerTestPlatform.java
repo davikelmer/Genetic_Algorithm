@@ -1,8 +1,9 @@
 package test;
 
 import jdk.jfr.*;
-import org.algorithm.GeneticDNAFinderPlatformJava;
-import org.algorithm.GeneticDNAFinderVirtualJava;
+import org.algorithm.GeneticDNAFinderCompletableFuture;
+import org.algorithm.GeneticDNAFinderParallelStream;
+import org.algorithm.GeneticDNAFinderSpark;
 import org.apache.jmeter.config.Arguments;
 import org.apache.jmeter.protocol.java.sampler.AbstractJavaSamplerClient;
 import org.apache.jmeter.protocol.java.sampler.JavaSamplerContext;
@@ -19,7 +20,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 
 public class GeneticSamplerTestPlatform extends AbstractJavaSamplerClient {
 
@@ -88,7 +88,7 @@ public class GeneticSamplerTestPlatform extends AbstractJavaSamplerClient {
             }
 
 
-            GeneticDNAFinderPlatformJava.run();
+            GeneticDNAFinderSpark.run();
 
             result.sampleEnd();
             result.setSuccessful(true);
@@ -109,7 +109,7 @@ public class GeneticSamplerTestPlatform extends AbstractJavaSamplerClient {
                         currentRecording.stop();
                         log.info("JFR Recording stopped by {}: {}", context.getJMeterContext().getThread().getThreadName(), jfrFilePath);
                     }
-                } catch (Exception e) { // Captura exceção genérica ao parar
+                } catch (Exception e) {
                     log.error("Error stopping JFR recording by {}: {}", context.getJMeterContext().getThread().getThreadName(), jfrFilePath, e);
                 } finally {
                     currentRecording.close();

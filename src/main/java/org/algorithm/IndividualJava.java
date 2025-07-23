@@ -3,9 +3,9 @@ package org.algorithm;
 import java.util.Random;
 
 
-class IndividualJava implements Comparable<IndividualJava> {
-    String chromosome;
-    int fitness;
+public class IndividualJava implements Comparable<IndividualJava>, java.io.Serializable {
+    public final String chromosome;
+    public final int fitness;
 
     public IndividualJava(String chromosome, String target) {
         this.chromosome = chromosome;
@@ -21,7 +21,7 @@ class IndividualJava implements Comparable<IndividualJava> {
     }
 
     public IndividualJava mate(IndividualJava partner, String target, Random rand) {
-        StringBuilder childChromosome = new StringBuilder();
+        StringBuilder childChromosome = new StringBuilder(chromosome.length());
         for (int i = 0; i < chromosome.length(); i++) {
             float prob = rand.nextFloat();
             if (prob < 0.45) {
@@ -29,8 +29,8 @@ class IndividualJava implements Comparable<IndividualJava> {
             } else if (prob < 0.90) {
                 childChromosome.append(partner.chromosome.charAt(i));
             } else {
-                childChromosome.append(GeneticDNAFinderSerialJava.GENES.
-                        charAt(rand.nextInt(GeneticDNAFinderSerialJava.GENES.length())));
+                childChromosome.append(GeneticDNAFinderPlatformJava.GENES.
+                        charAt(rand.nextInt(GeneticDNAFinderPlatformJava.GENES.length())));
             }
         }
         return new IndividualJava(childChromosome.toString(), target);
